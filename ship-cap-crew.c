@@ -12,12 +12,14 @@ int main(){
     srand(time(NULL));                  //initialization
     int roll[5];
     int i =0;
+    int comp =0;
+    int winner;
     int players = playercount();
     int score[players];
    
 
     for( int j = 0; j<players;j++){
-    printf("Starting player %d\n", j+1);
+    printf("\nStarting player %d\n", j+1);
     int play = 0;
     play = validplay(roll);
 
@@ -28,11 +30,9 @@ int main(){
 
     int points = roll[3]+roll[4];
     if(play==1){                                                                       //Will need to be changed, to add on more players
-        printf("\nYou have %d points, \n", points);
         score[j] = points;
     }
     else{
-        printf("\nPlay invalid: Score 0\n");
         score[j]=0;
     }
 
@@ -41,8 +41,15 @@ int main(){
     } 
 
     for(i=0;i<players; i++){
-        printf("Player %d score: %d\n", i+1,score[i]);
+        printf("\nPlayer %d score: %d\n", i+1,score[i]);
+        if(score[i]>comp){
+            comp = score[i];
+            winner = i+1;
+        }
     }
+
+    printf("Player %d wins with %d points\n", winner, comp);
+
 return 0;
 }
 
